@@ -20,7 +20,7 @@ CREATE TABLE TB_USUARIO(
 	EMAIL VARCHAR(50) UNIQUE NOT NULL,
 	CONTRASENIA NVARCHAR(255) NOT NULL,
 	ROL CHAR(1) CHECK (ROL IN ('P', 'E', 'A')),
-	FLGELIMINADO BIT DEFAULT 1
+	FLGELIMINADO BIT DEFAULT 0
 )
 GO
 
@@ -31,7 +31,7 @@ CREATE TABLE TB_GRADOS (
 
 CREATE TABLE TB_CURSOS(
 	ID_CURSO CHAR(7) PRIMARY KEY,
-	NOMBRE_CURSO VARCHAR(50) NOT NULL,
+	NOMBRE_CURSO VARCHAR(50) NOT NULL Unique,
 	ID_PROFESOR INT NOT NULL,
 	ID_GRADO INT NOT NULL,
 	FOREIGN KEY (ID_PROFESOR) REFERENCES TB_USUARIO(ID_USUARIO),
@@ -54,8 +54,60 @@ CREATE TABLE TB_NOTAS (
     ID_USUARIO INT NOT NULL,
     CALIFICACION DECIMAL(5,2) NOT NULL,
     COMENTARIO VARCHAR(255),
-    FECHA_REGISTRO DATETIME DEFAULT GETDATE(),
+    FECHA_REGISTRO DATE DEFAULT GETDATE(),
     FOREIGN KEY (ID_CURSO) REFERENCES TB_CURSOS(ID_CURSO),
     FOREIGN KEY (ID_USUARIO) REFERENCES TB_USUARIO(ID_USUARIO)
 )
 
+-- Profesores (ROL = 'P')
+INSERT INTO TB_USUARIO (NOMBRE_USUARIO, APELLIDO_USUARIO, EMAIL, CONTRASENIA, ROL)
+VALUES 
+('Carlos', 'Ramirez', 'carlos.ramirez@escuela.edu', 'pass123', 'P'),
+('Laura', 'Gomez', 'laura.gomez@escuela.edu', 'pass456', 'P');
+
+-- Estudiantes (ROL = 'E')
+INSERT INTO TB_USUARIO (NOMBRE_USUARIO, APELLIDO_USUARIO, EMAIL, CONTRASENIA, ROL)
+VALUES 
+('Miguel', 'Torres', 'miguel.torres@estudiante.edu', 'pass789', 'E'),
+('Ana', 'Martinez', 'ana.martinez@estudiante.edu', 'pass321', 'E'),
+('Luis', 'Sanchez', 'luis.sanchez@estudiante.edu', 'pass654', 'E');
+
+-- Administrador (ROL = 'A')
+INSERT INTO TB_USUARIO (NOMBRE_USUARIO, APELLIDO_USUARIO, EMAIL, CONTRASENIA, ROL)
+VALUES 
+('Admin', 'Sistema', 'admin@gestor.edu', 'adminpass', 'A');
+
+--Grados
+INSERT INTO TB_GRADOS (NOMBRE_GRADO)
+VALUES 
+('Primero de Secundaria'),
+('Segundo de Secundaria'),
+('Tercero de Secundaria');
+
+-- Cursos
+INSERT INTO TB_CURSOS (ID_CURSO, NOMBRE_CURSO, ID_PROFESOR, ID_GRADO)
+VALUES
+('MAT101A', 'Matemáticas I', 1, 1),
+('LEN102B', 'Lengua y Literatura', 2, 1),
+('FIS201A', 'Física', 1, 2),
+('HIS202B', 'Historia', 2, 2);
+
+-- Estudiantes_Cursos
+INSERT INTO TB_ESTUDIANTES_CURSOS (ID_CURSO, ID_USUARIO)
+VALUES
+('MAT101A', 3),
+('MAT101A', 4),
+('LEN102B', 3),
+('LEN102B', 5),
+('FIS201A', 4),
+('HIS202B', 5);
+
+--Notas
+INSERT INTO TB_NOTAS (ID_CURSO, ID_USUARIO, CALIFICACION, COMENTARIO)
+VALUES
+('MAT101A', 3, 15.50, 'Buen rendimiento'),
+('MAT101A', 4, 17.25, 'Excelente trabajo'),
+('LEN102B', 3, 14.00, 'Debe mejorar la redacción'),
+('LEN102B', 5, 18.00, 'Participación destacada'),
+('FIS201A', 4, 13.75, 'Entregó todas las prácticas'),
+('HIS202B', 5, 19.00, 'Gran presentación final');
