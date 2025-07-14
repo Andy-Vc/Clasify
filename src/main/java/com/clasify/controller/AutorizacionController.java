@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.clasify.dto.AutenticacionUsuario;
 import com.clasify.dto.ResultadoResponse;
 import com.clasify.model.Usuario;
 import com.clasify.service.UsuarioService;
 
+@RequestMapping("/auth")
 @RestController
-@RequestMapping("/usuario")
-public class UsuarioController {
-
+public class AutorizacionController {
 	private final UsuarioService usuarioService;
 
-	public UsuarioController(UsuarioService usuarioService) {
+	public AutorizacionController(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
 
-	@PostMapping("/crear")
+	@PostMapping("/register")
 	public ResponseEntity<ResultadoResponse> crearStudent(@RequestBody Usuario usuario) {
 		try {
 			ResultadoResponse resultado = usuarioService.createStudent(usuario);
@@ -32,4 +32,14 @@ public class UsuarioController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
 		}
 	}
+	
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody AutenticacionUsuario filtro) {
+        try {
+            Usuario usuario = usuarioService.autenticar(filtro);
+            return ResponseEntity.ok(usuario);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
+    }
 }

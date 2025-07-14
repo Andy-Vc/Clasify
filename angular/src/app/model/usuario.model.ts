@@ -1,4 +1,4 @@
-export class usuario{
+export class Usuario{
     idUsuario? :number;
     nombreUsuario?: string;
     apellidoUsuario?: string;

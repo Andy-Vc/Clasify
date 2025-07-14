@@ -1,0 +1,105 @@
+<div class="container-fluid full-screen-container d-flex p-0">
+    <div class="position-absolute top-0 start-0 d-flex align-items-center ">
+        <img src="assets/img/logo.png" alt="Logo" style="height: 100px;" />
+        <h2 class="m-0 fw-bold text-cyan text-uppercase">Clasify</h2>
+    </div>
+
+    <div class="form-registro col-12 col-md-6 bg-white d-flex flex-column justify-content-center p-4 shadow rounded position-relative"
+        style=" margin: auto;">
+        <h3 class="text-center mb-4 text-cyan mt-3 pt-3">
+            <i class="fas fa-user-plus me-2"></i>Registro Estudiante
+        </h3>
+
+        <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="mb-4">
+                        <label for="nombre" class="form-label fw-semibold text-negro">Nombre</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-cyan text-white"><i class="fas fa-id-badge"></i></span>
+                            <input id="nombre" name="nombre" [(ngModel)]="nombre" class="form-control"
+                                placeholder="Ingresa tu nombre" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="email" class="form-label fw-semibold text-negro">Correo Electrónico</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-cyan text-white"><i class="fas fa-envelope"></i></span>
+                            <input id="email" name="email" type="email" [(ngModel)]="email" class="form-control"
+                                placeholder="ejemplo@correo.com" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="mb-4">
+                        <label for="apellido" class="form-label fw-semibold text-negro">Apellido</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-cyan text-white"><i class="fas fa-id-card"></i></span>
+                            <input id="apellido" name="apellido" [(ngModel)]="apellido" class="form-control"
+                                placeholder="Ingresa tu apellido" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 position-relative">
+                        <label for="password" class="form-label fw-semibold text-negro">Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-cyan text-white">
+                                <i class="fas fa-lock"></i>
+                            </span>
+
+                            <input [type]="mostrarPassword ? 'text' : 'password'" id="password" name="password"
+                                class="form-control" [(ngModel)]="contrasenia" required placeholder="*****" />
+                            <span class="input-group-text" (click)="togglePassword()" style="cursor: pointer;">
+                                <i class="fas" [ngClass]="mostrarPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn w-100 fw-semibold d-flex align-items-center justify-content-center mb-3"
+                [disabled]="!registerForm.form.valid" style="background-color: var(--colorCyan); color: white;">
+                <i class="fas fa-user-check me-2"></i>Registrarse
+            </button>
+
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-link text-decoration-none text-cyan" (click)="onLogin()">
+                    ¿Ya tienes cuenta? <strong>Inicia sesión</strong>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="d-none d-md-block col-md-6 p-0 position-relative carousel-container">
+        <div class="swiper mySwiper h-100">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide position-relative">
+                    <img src="assets/img/registro1.png" alt="Aprendizaje" />
+                    <div class="position-absolute top-50 start-50 translate-middle text-white text-center overlay-text">
+                        <i class="fas fa-book-reader fa-3x mb-3"></i>
+                        <h4>Aprende con experticia</h4>
+                        <p>Accede a recursos diseñados para tu crecimiento.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide position-relative">
+                    <img src="assets/img/registro2.png" alt="Comunidad">
+                    <div class="position-absolute top-50 start-50 translate-middle text-white text-center overlay-text">
+                        <i class="fas fa-users fa-3x mb-3"></i>
+                        <h4>Únete a la comunidad</h4>
+                        <p>Colabora y aprende con otros estudiantes.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide position-relative">
+                    <img src="assets/img/registro3.png" alt="Crecimiento">
+                    <div class="position-absolute top-50 start-50 translate-middle text-white text-center overlay-text">
+                        <i class="fas fa-chart-line fa-3x mb-3"></i>
+                        <h4>Crece día a día</h4>
+                        <p>Supera tus metas con seguimiento personalizado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

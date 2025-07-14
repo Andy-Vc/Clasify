@@ -62,20 +62,14 @@ CREATE TABLE TB_NOTAS (
 -- Profesores (ROL = 'P')
 INSERT INTO TB_USUARIO (NOMBRE_USUARIO, APELLIDO_USUARIO, EMAIL, CONTRASENIA, ROL)
 VALUES 
-('Carlos', 'Ramirez', 'carlos.ramirez@escuela.edu', 'pass123', 'P'),
-('Laura', 'Gomez', 'laura.gomez@escuela.edu', 'pass456', 'P');
+('Carlos', 'Ramirez', 'carlos.ramirez@escuela.edu', '$2a$10$fw4ddVa2No5lkadsiYvj0um84MhWs6UCrKRzTtJxNH95lFLAKKay2', 'P'),--pass123
+('Laura', 'Gomez', 'laura.gomez@escuela.edu', '$$2a$10$gCUQ8/nZJgvl.ipe7J8drudc1hJsnxTbKQi8YtOZbHrVq7.mWSai6', 'P'),--pass456
 
--- Estudiantes (ROL = 'E')
-INSERT INTO TB_USUARIO (NOMBRE_USUARIO, APELLIDO_USUARIO, EMAIL, CONTRASENIA, ROL)
-VALUES 
-('Miguel', 'Torres', 'miguel.torres@estudiante.edu', 'pass789', 'E'),
-('Ana', 'Martinez', 'ana.martinez@estudiante.edu', 'pass321', 'E'),
-('Luis', 'Sanchez', 'luis.sanchez@estudiante.edu', 'pass654', 'E');
+('Miguel', 'Torres', 'miguel.torres@estudiante.edu', '$2a$10$CshOmN5jewOXXTpExmtlM.jKXg/Fm6utGRKAQDcmPUOhUVMXYpq0.', 'E'),--pass789
+('Ana', 'Martinez', 'ana.martinez@estudiante.edu', '$2a$10$.8484niRiAaCZsZlq23daevCgZ68ay9dEpRT8Zn44EmnKCKRymL0O', 'E'),--pass321
+('Luis', 'Sanchez', 'luis.sanchez@estudiante.edu', '$2a$10$rh1TdLDmVeLE393mOtVmZOBZhP7LTDhmmYkq4DbK8qomkf1UXZmQq', 'E'),--	pass654
 
--- Administrador (ROL = 'A')
-INSERT INTO TB_USUARIO (NOMBRE_USUARIO, APELLIDO_USUARIO, EMAIL, CONTRASENIA, ROL)
-VALUES 
-('Admin', 'Sistema', 'admin@gestor.edu', 'adminpass', 'A');
+('Admin', 'Sistema', 'admin@gestor.edu', '$2a$10$14sTjoyRGcXXeifh2tteD.6zF0KjosvSJUSKNn7EdM/KLU/BpT96y', 'A');--adminpass
 
 --Grados
 INSERT INTO TB_GRADOS (NOMBRE_GRADO)

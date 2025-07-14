@@ -1,0 +1,87 @@
+<div class="full-screen-container d-flex">
+  <div class="d-none d-md-block col-md-6 p-0 position-relative">
+    <div class="swiper mySwiper h-100">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide position-relative">
+          <img src="assets/img/login.jpg" alt="Comunidad" />
+          <div class="position-absolute top-50 start-50 translate-middle text-white text-center overlay-text">
+            <i class="fas fa-users fa-3x mb-3"></i>
+            <h4>Conecta con tu comunidad</h4>
+            <p>Únete a miles de personas como tú.</p>
+          </div>
+        </div>
+        <div class="swiper-slide position-relative">
+          <img src="assets/img/login1.jpg" alt="Seguridad" />
+          <div class="position-absolute top-50 start-50 translate-middle text-white text-center overlay-text">
+            <i class="fas fa-lock fa-3x mb-3"></i>
+            <h4>Tu seguridad es lo primero</h4>
+            <p>Protegemos tus datos con tecnología avanzada.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide position-relative">
+          <img src="assets/img/login2.jpg" alt="Rapidez" />
+          <div class="position-absolute top-50 start-50 translate-middle text-white text-center overlay-text">
+            <i class="fas fa-bolt fa-3x mb-3"></i>
+            <h4>Rápido y confiable</h4>
+            <p>Accede al instante a lo que necesitas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="position-absolute top-0 end-0 d-flex align-items-center">
+    <img src="assets/img/logo.png" alt="Logo" style="height: 100px;" />
+    <h2 class="m-0 fw-bold text-cyan pe-4 text-uppercase">Clasify</h2>
+  </div>
+
+  <div class="col-12 col-md-6 bg-white d-flex flex-column justify-content-center px-5 py-4 shadow rounded"
+    style="max-width: 450px; margin: auto; position: relative;">
+    <h3 class="text-center mb-4 text-cyan mt-5 pt-3">
+      <i class="fas fa-sign-in-alt me-2 "></i>Iniciar Sesión
+    </h3>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="w-100">
+
+      <div class="mb-4 position-relative">
+        <label for="email" class="form-label fw-semibold text-negro">Correo electrónico</label>
+        <div class="input-group">
+          <span class="input-group-text bg-cyan text-white">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <input type="email" id="email" name="email" class="form-control" [(ngModel)]="email" required
+            placeholder="ejemplo@correo.com" aria-describedby="emailHelp" />
+        </div>
+      </div>
+
+      <div class="mb-4 position-relative">
+        <label for="password" class="form-label fw-semibold text-negro">Contraseña</label>
+        <div class="input-group">
+          <span class="input-group-text bg-cyan text-white">
+            <i class="fas fa-lock"></i>
+          </span>
+
+          <input [type]="mostrarPassword ? 'text' : 'password'" id="password" name="password" class="form-control"
+            [(ngModel)]="contrasenia" required placeholder="*****" />
+
+          <span class="input-group-text" (click)="togglePassword()" style="cursor: pointer;">
+            <i class="fas" [ngClass]="mostrarPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </span>
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn w-100 fw-semibold d-flex align-items-center justify-content-center"
+        [disabled]="!loginForm.form.valid" style="gap: 0.5rem; background-color: var(--colorCyan); color: white;">
+        <i class="fas fa-arrow-right-to-bracket"></i> Iniciar sesión
+      </button>
+
+      <div class="text-center mt-4">
+        <button type="button" class="btn btn-link text-decoration-none text-cyan" (click)="onRegister()">
+          ¿No tienes cuenta? <strong>Regístrate</strong>
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

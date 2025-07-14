@@ -52,6 +52,22 @@ public class UsuarioService {
 		}
 	}
 	
+	public ResultadoResponse createTeacher(Usuario usuario) {
+		try {
+			String mensaje = "Profesor " + usuario.getNombreUsuario() + " registrado correctamente";
+			String passwordHashed = passwordEncoder.encode(usuario.getContrasenia());
+			usuario.setRol("P");
+	        usuario.setContrasenia(passwordHashed);
+			repository.save(usuario);
+			return new ResultadoResponse(true, mensaje);
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return new ResultadoResponse(false, e.getMessage());
+		}
+	}
+	
 	public ResultadoResponse deleteStudent(Integer id) {
 		Usuario usuario = this.getOne(id);
 		String accion = usuario.getFlgEliminado() ? "Eliminado" : "Activo";

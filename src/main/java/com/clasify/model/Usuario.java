@@ -2,6 +2,8 @@ package com.clasify.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,6 +47,7 @@ public class Usuario {
 	private Boolean flgEliminado = false; 
 	
 	@OneToMany(mappedBy = "estudiante")
+	@JsonIgnore
 	private List<EstudiantesCurso> cursosInscritos;
 
 	public String getNombreCompleto() {
