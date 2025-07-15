@@ -1,2 +1,93 @@
-<h1>Bienvenido al Panel del Admin</h1>
-<p>Aquí puedes acceder a tus cursos, calificaciones y más.</p>
+<div class="m-1">
+  <h1 class="mb-4 text-primary">Bienvenido al Panel del Admin</h1>
+  
+  <p class="lead mb-5">
+    Hola, <strong>{{ usuario.nombreUsuario }} {{ usuario.apellidoUsuario }}</strong>. Aquí puedes acceder a tus cursos, calificaciones y más.
+  </p>
+
+  <!-- Resumen principal -->
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 h-100 text-white bg-primary">
+        <div class="card-body d-flex align-items-center">
+          <i class="fas fa-chalkboard-teacher fa-3x me-3"></i>
+          <div>
+            <h5 class="card-title">Total Profesores</h5>
+            <h2 class="card-text">{{ dataInfo.totalProfesores }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 h-100 text-white bg-success">
+        <div class="card-body d-flex align-items-center">
+          <i class="fas fa-user-graduate fa-3x me-3"></i>
+          <div>
+            <h5 class="card-title">Total Estudiantes</h5>
+            <h2 class="card-text">{{ dataInfo.totalEstudiantes }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 h-100 text-white bg-info">
+        <div class="card-body d-flex align-items-center">
+          <i class="fas fa-book fa-3x me-3"></i>
+          <div>
+            <h5 class="card-title">Total Cursos</h5>
+            <h2 class="card-text">{{ dataInfo.totalCursos }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel de actividad reciente y tareas -->
+  <div class="row g-4">
+    <!-- Actividad reciente -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-white">
+          <h5 class="mb-0"><i class="fas fa-history me-2"></i>Actividad Reciente</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>Juan Pérez</strong> se inscribió en <em>Matemáticas 101</em> - 2 horas atrás
+          </li>
+          <li class="list-group-item">
+            <strong>María López</strong> completó el curso <em>Historia Moderna</em> - 1 día atrás
+          </li>
+          <li class="list-group-item">
+            Nuevo profesor <strong>Carlos Martínez</strong> fue agregado - 3 días atrás
+          </li>
+          <!-- Puedes hacer esto dinámico con un *ngFor -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tareas o notificaciones -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-white">
+          <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Tareas Pendientes</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li>
+              <i class="fas fa-check-circle text-success me-2"></i> Revisar solicitudes de inscripción
+            </li>
+            <li>
+              <i class="fas fa-exclamation-circle text-warning me-2"></i> Actualizar datos de profesores
+            </li>
+            <li>
+              <i class="fas fa-bell text-danger me-2"></i> Publicar nuevas políticas de privacidad
+            </li>
+            <!-- Agrega más según necesidad -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

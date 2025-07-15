@@ -7,4 +7,5 @@ export class Usuario{
     rol?:string;
     flgEliminado?:boolean;
     cursosInscritos?: any[];
+    rolDescripcion?:string;
 }

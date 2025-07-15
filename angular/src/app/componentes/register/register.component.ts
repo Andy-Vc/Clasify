@@ -44,9 +44,7 @@ export class RegisterComponent implements AfterViewInit {
 
     this.AuthService.registrar(usuario).subscribe({
       next: (response) => {
-        AlertService.success(
-          `Registro exitoso, ${usuario.nombreUsuario} ${usuario.apellidoUsuario}`
-        );
+        AlertService.success(response.mensaje);
         console.log('Registro exitoso:', response);
         this.router.navigate(['/login']);
       },

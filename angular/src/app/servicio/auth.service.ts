@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../model/usuario.model'; 
+import { Usuario } from '../model/usuario.model';
 import { Observable } from 'rxjs';
 import { AutenticarUsuario } from '../dto/autenticarUsuario.model';
+import { ResultadoResponse } from '../dto/resultadoResponse.model';
+import { LoginResponse } from '../dto/loginResponse.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/auth'; 
+  private baseUrl = 'http://localhost:8080/auth';
 
   constructor(private http: HttpClient) {}
 
-  login(credentials: AutenticarUsuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.baseUrl}/login`, credentials);
+  login(credentials: AutenticarUsuario): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.baseUrl}/login`, credentials);
   }
 
-  registrar(usuario: Usuario): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/register`, usuario);
+  registrar(usuario: Usuario): Observable<ResultadoResponse> {
+    return this.http.post<ResultadoResponse>(
+      `${this.baseUrl}/register`,
+      usuario
+    );
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
   }
 }

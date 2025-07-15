@@ -54,4 +54,12 @@ public class Usuario {
 		return nombreUsuario + " " +apellidoUsuario;
 	}
 	
+	public String getRolDescripcion() {
+	    switch (this.rol) {
+	        case "A": return "Administrador";
+	        case "P": return "Profesor";
+	        case "E": return "Estudiante";
+	        default: return "Rol desconocido";
+	    }
+	}
 }

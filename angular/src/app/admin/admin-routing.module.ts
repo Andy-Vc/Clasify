@@ -8,15 +8,18 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent,data: { title: 'Dashboard' } },
+      {
+        path: 'profesor',
+        loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule),data: { title: 'Profesores' }
+      },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), AdminLayoutComponent, 
-    DashboardComponent ],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AdminRoutingModule {}

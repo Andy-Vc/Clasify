@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold">
+    <i class="fas fa-chalkboard-teacher me-2"></i>Listado de Profesores
+  </h2>
+  <button class="btn btn-success" (click)="crearProfesor()" title="Agregar nuevo profesor">
+    <i class="fas fa-plus me-1"></i> Nuevo Profesor
+  </button>
+</div>
+<div *ngIf="loading" class="alert alert-info">
+  <i class="fas fa-spinner fa-spin me-2"></i> Cargando profesores...
+</div>
+<div *ngIf="!loading && teachers.length === 0" class="alert alert-warning">
+  <i class="fas fa-exclamation-triangle me-2"></i> No hay profesores cargados.
+</div>
+
+<table *ngIf="!loading && teachers.length > 0" class="table table-striped table-hover align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>ID Usuario</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Rol</th>
+      <th>Estado</th>
+      <th class="text-center">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let teacher of teachers" class="align-middle">
+      <td>{{ teacher.idUsuario }}</td>
+      <td>{{ teacher.nombreUsuario }}</td>
+      <td>{{ teacher.apellidoUsuario }}</td>
+      <td>{{ teacher.email }}</td>
+      <td>{{ teacher.rolDescripcion }}</td>
+      <td>
+        <span 
+          class="badge"
+          [ngClass]="teacher.flgEliminado ? 'bg-danger' : 'bg-success'">
+          <i class="fas" [ngClass]="teacher.flgEliminado ? 'fa-user-slash' : 'fa-user-check'"></i>
+          &nbsp;{{ teacher.flgEliminado ? 'Inactivo' : 'Activo' }}
+        </span>
+      </td>
+      <td class="text-center d-flex justify-content-center gap-3">
+        <!-- Botón editar -->
+        <button 
+          class="btn btn-sm btn-warning" 
+          (click)="editarProfesor(teacher)" 
+          title="Editar profesor">
+          <i class="fas fa-edit"></i>
+        </button>
+
+        <!-- Switch activar/desactivar -->
+        <div class="form-check form-switch m-0 d-flex align-items-center" 
+             [title]="teacher.flgEliminado ? 'Activar profesor' : 'Desactivar profesor'">
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            [checked]="!teacher.flgEliminado" 
+            (change)="toggleEstado(teacher)" 
+            id="switch-{{teacher.idUsuario}}" />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

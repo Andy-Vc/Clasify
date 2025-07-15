@@ -1,71 +1,96 @@
 <div [class.dark-theme]="darkMode" class="d-flex flex-column min-vh-100">
-  <header
-    class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm d-flex justify-content-between align-items-center px-3">
-    <a class="navbar-brand" href="#">Admin Panel</a>
-    <div>
-      <button class="btn btn-outline-light me-2 d-lg-none" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#sidebarMenuMobile" aria-controls="sidebarMenuMobile" aria-label="Abrir menú">
-        <i class="fas fa-bars"></i>
-      </button>
-      <button class="btn btn-outline-light" (click)="toggleDarkMode()" aria-label="Toggle dark mode">
-        <i class="fas" [ngClass]="{ 'fa-moon': !darkMode, 'fa-sun': darkMode }"></i>
-      </button>
+  <!-- Header -->
+  <header class="navbar navbar-expand-lg sticky-top shadow-sm custom-navbar px-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center px-0">
+      <!-- Logo + título -->
+      <div class="d-flex align-items-center" style="margin: -10px 0px;">
+        <img src="assets/img/logo.png" alt="Logo" class="logo-img pe-2" />
+        <h2 class="m-0 fw-bold text-cyan text-uppercase">Clasify</h2>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-outline-black d-lg-none" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#sidebarMenuMobile" aria-label="Abrir menú">
+          <i class="fas fa-bars"></i>
+        </button>
+        <button class="btn btn-outline-black" (click)="toggleDarkMode()" aria-label="Toggle dark mode">
+          <i class="fas" [ngClass]="{ 'fa-moon': !darkMode, 'fa-sun': darkMode }"></i>
+        </button>
+      </div>
     </div>
   </header>
 
+  <!-- Main -->
   <div class="container-fluid flex-grow-1">
     <div class="row">
-      <nav id="sidebarMenuDesktop" class="col-lg-2 d-none d-lg-block bg-light sidebar border-end"
-        style="min-height: 100vh;">
-        <div class="list-group list-group-flush">
-          <a routerLink="/admin/dashboard" routerLinkActive="active"
-            class="list-group-item list-group-item-action py-3 d-flex align-items-center">
-            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
-          </a>
-          <a routerLink="/admin/usuarios" routerLinkActive="active"
-            class="list-group-item list-group-item-action py-3 d-flex align-items-center">
-            <i class="fas fa-users me-2"></i> Usuarios
-          </a>
-          <a routerLink="/admin/reportes" routerLinkActive="active"
-            class="list-group-item list-group-item-action py-3 d-flex align-items-center">
-            <i class="fas fa-chart-bar me-2"></i> Reportes
-          </a>
-          <a routerLink="/admin/configuracion" routerLinkActive="active"
-            class="list-group-item list-group-item-action py-3 d-flex align-items-center">
-            <i class="fas fa-cogs me-2"></i> Configuración
-          </a>
+      <!-- Sidebar Desktop -->
+      <nav id="sidebarMenuDesktop"
+        class="col-lg-2 d-none d-lg-block sidebar border-end h-100vh p-fixed padding-0 d-flex flex-column justify-content-between">
+        <div>
+          <div class="list-group list-group-flush">
+            <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-link-item">
+              <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+            </a>
+            <a routerLink="/admin/profesor" routerLinkActive="active" class="nav-link-item">
+              <i class="fas fa-chalkboard-teacher me-2"></i> Profesores
+            </a>
+            <a routerLink="/admin/reportes" routerLinkActive="active" class="nav-link-item">
+              <i class="fas fa-chart-bar me-2"></i> Reportes
+            </a>
+            <a routerLink="/admin/configuracion" routerLinkActive="active" class="nav-link-item">
+              <i class="fas fa-cogs me-2"></i> Configuración
+            </a>
+          </div>
+        </div>
+        <div class="p-3 border-top button-close-down">
+          <button class="btn btn-outline-danger w-100" (click)="logout()">
+            <i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión
+          </button>
         </div>
       </nav>
 
-      <nav id="sidebarMenuMobile" class="offcanvas offcanvas-start d-lg-none bg-light border-end" tabindex="-1"
+
+      <!-- Sidebar Mobile -->
+      <nav id="sidebarMenuMobile" class="offcanvas offcanvas-start d-lg-none border-end h-100vh padding-0" tabindex="-1"
         aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasLabel">Menú</h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
             aria-label="Cerrar menú"></button>
         </div>
-        <div class="offcanvas-body p-0">
-          <div class="list-group list-group-flush">
-            <a routerLink="/admin/dashboard" routerLinkActive="active"
-              class="list-group-item list-group-item-action py-3 d-flex align-items-center" data-bs-dismiss="offcanvas">
-              <i class="fas fa-tachometer-alt me-2"></i> Dashboard
-            </a>
-            <a routerLink="/admin/usuarios" routerLinkActive="active"
-              class="list-group-item list-group-item-action py-3 d-flex align-items-center" data-bs-dismiss="offcanvas">
-              <i class="fas fa-users me-2"></i> Usuarios
-            </a>
-            <a routerLink="/admin/reportes" routerLinkActive="active"
-              class="list-group-item list-group-item-action py-3 d-flex align-items-center" data-bs-dismiss="offcanvas">
-              <i class="fas fa-chart-bar me-2"></i> Reportes
-            </a>
-            <a routerLink="/admin/configuracion" routerLinkActive="active"
-              class="list-group-item list-group-item-action py-3 d-flex align-items-center" data-bs-dismiss="offcanvas">
-              <i class="fas fa-cogs me-2"></i> Configuración
-            </a>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-0 h-100">
+          <div>
+            <div class="list-group list-group-flush">
+              <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-link-item"
+                data-bs-dismiss="offcanvas">
+                <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+              </a>
+              <a routerLink="/admin/usuarios" routerLinkActive="active" class="nav-link-item"
+                data-bs-dismiss="offcanvas">
+                <i class="fas fa-users me-2"></i> Usuarios
+              </a>
+              <a routerLink="/admin/reportes" routerLinkActive="active" class="nav-link-item"
+                data-bs-dismiss="offcanvas">
+                <i class="fas fa-chart-bar me-2"></i> Reportes
+              </a>
+              <a routerLink="/admin/configuracion" routerLinkActive="active" class="nav-link-item"
+                data-bs-dismiss="offcanvas">
+                <i class="fas fa-cogs me-2"></i> Configuración
+              </a>
+            </div>
+          </div>
+
+          <!-- Botón logout abajo -->
+          <div class="p-3 border-top">
+            <button class="btn btn-outline-danger w-100" (click)="logout()">
+              <i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión
+            </button>
           </div>
         </div>
       </nav>
 
+
+      <!-- Main Content -->
       <main class="col-lg-10 ms-auto px-4 py-4">
         <router-outlet></router-outlet>
       </main>
