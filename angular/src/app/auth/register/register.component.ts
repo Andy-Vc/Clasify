@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { AuthService } from '../../servicio/auth.service';
-import { Usuario } from '../../model/usuario.model';
+import { AuthService } from '../service/auth.service';
+import { Usuario } from '../../shared/model/usuario.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,6 +8,7 @@ import { AlertService } from '../../util/alert.service';
 import { Router } from '@angular/router';
 import Swiper from 'swiper';
 import { Autoplay } from 'swiper/modules';
+import { ThemeService } from '../../shared/services/theme.service';
 Swiper.use([Autoplay]);
 
 @Component({
@@ -32,8 +33,15 @@ export class RegisterComponent implements AfterViewInit {
   email = '';
   contrasenia = '';
 
-  constructor(private AuthService: AuthService, private router: Router) {}
-
+  constructor(
+    private AuthService: AuthService,
+    private router: Router,
+    private themeService: ThemeService
+  ) {}
+  darkMode = false;
+  toggleDarkMode(): void {
+    this.themeService.toggleDarkMode();
+  }
   onRegister() {
     const usuario: Usuario = {
       nombreUsuario: this.nombre,
@@ -54,11 +62,11 @@ export class RegisterComponent implements AfterViewInit {
     });
   }
   onLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
   mostrarPassword: boolean = false;
-  
+
   togglePassword() {
     this.mostrarPassword = !this.mostrarPassword;
   }

@@ -13,37 +13,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.clasify.dto.CursoDTO;
+import com.clasify.dto.CursoEstudiantesDTO;
 import com.clasify.dto.ResultadoResponse;
-import com.clasify.model.Usuario;
-import com.clasify.service.UsuarioService;
+import com.clasify.service.CursoService;
 
 @RestController
-@RequestMapping("/profesor")
-public class ProfesorController {
-	private final UsuarioService usuarioService;
+@RequestMapping("/curso")
+public class CursoController {
+	private CursoService cursoService;
 
-	public ProfesorController(UsuarioService usuarioService) {
-		this.usuarioService = usuarioService;
+	public CursoController(CursoService cursoService) {
+		this.cursoService = cursoService;
 	}
-
+	
 	@GetMapping("/list")
-	public ResponseEntity<?> listTeachers() {
+	public ResponseEntity<?> listCurses() {
 		try {
-			List<Usuario> teachers = usuarioService.getTeachers();
-			return ResponseEntity.ok(teachers);
+			List<CursoDTO> listado = cursoService.getAll();
+			return ResponseEntity.ok(listado);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 
+	@GetMapping("/detalle/{id}")
+	public ResponseEntity<CursoEstudiantesDTO> getCursoDetalle(@PathVariable String id) {
+		CursoEstudiantesDTO curso = cursoService.getCurseStudents(id);
+	    return ResponseEntity.ok(curso);
+	}
+	
 	@PostMapping("/register")
-	public ResponseEntity<ResultadoResponse> crearTeacher(@RequestBody Usuario usuario) {
+	public ResponseEntity<ResultadoResponse> createCurse(@RequestBody CursoDTO curso) {
 		try {
-			ResultadoResponse resultado = usuarioService.createTeacher(usuario);
+			ResultadoResponse resultado = cursoService.create(curso);
 			if (!resultado.isValor()) {
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultado);
-	        }
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultado);
+			}
 			return ResponseEntity.ok(resultado);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,28 +60,27 @@ public class ProfesorController {
 	}
 
 	@GetMapping("/id/{id}")
-	public ResponseEntity<?> obtenerTeacher(@PathVariable("id") Integer id) {
+	public ResponseEntity<?> getCurso(@PathVariable("id") String id) {
 		try {
-			Usuario getUsuario = usuarioService.getOne(id);
-			 if (getUsuario == null) {
-		            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-		                .body("No se encontró ningún profesor con ID: " + id);
-		        }
-			return ResponseEntity.ok(getUsuario);
+			CursoDTO getCurso = cursoService.getOne(id);
+			if (getCurso == null) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró ningún curso con ID: " + id);
+			}
+			return ResponseEntity.ok(getCurso);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("Error al obtener profesor con ID: " + id);
+					.body("Error al obtener curso con ID: " + id);
 		}
 	}
 
 	@PatchMapping("/update")
-	public ResponseEntity<ResultadoResponse> updateTeacher(@RequestBody Usuario usuario) {
+	public ResponseEntity<ResultadoResponse> updateCurse(@RequestBody CursoDTO curso) {
 		try {
-			ResultadoResponse resultado = usuarioService.update(usuario);
+			ResultadoResponse resultado = cursoService.update(curso);
 			if (!resultado.isValor()) {
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultado);
-	        }
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultado);
+			}
 			return ResponseEntity.ok(resultado);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,12 +90,12 @@ public class ProfesorController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<ResultadoResponse> deleteTeacher(@PathVariable("id") Integer id) {
+	public ResponseEntity<ResultadoResponse> deleteCurse(@PathVariable("id") String id) {
 		try {
-			ResultadoResponse resultado = usuarioService.delete(id);
+			ResultadoResponse resultado = cursoService.delete(id);
 			if (!resultado.isValor()) {
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultado);
-	        }
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultado);
+			}
 			return ResponseEntity.ok(resultado);
 		} catch (Exception e) {
 			e.printStackTrace();

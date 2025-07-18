@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminService } from '../../servicio/admin.service';
-import { dashboardResponse } from '../../dto/dashboardResponse.model';
-import { UsuarioDTO } from '../../dto/usuarioDTO.model';
+import { AdminService } from '../service/admin.service';
+import { dashboardResponse } from '../../shared/model/dashboardResponse.model';
+import { UsuarioDTO } from '../../shared/model/usuarioDTO.model';
 
 @Component({
   standalone: true,

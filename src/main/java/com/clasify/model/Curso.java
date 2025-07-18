@@ -4,7 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -33,6 +33,9 @@ public class Curso {
 	@JoinColumn(name="ID_GRADO", nullable = false)
 	private Grado idGrado;
 	
-	@OneToMany(mappedBy = "curso")
+	@Column(name="FLGELIMINADO", columnDefinition = "BIT DEFAULT 0")
+	private Boolean flgEliminado = false; 
+	
+	@OneToMany(mappedBy = "curso", fetch = FetchType.LAZY)
 	private List<EstudiantesCurso> estudiantes;
 }

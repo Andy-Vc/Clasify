@@ -7,7 +7,8 @@ import {
 } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../servicio/auth.service';
+import { AuthService } from '../../auth/service/auth.service';
+import { ThemeService } from '../../shared/services/theme.service';
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
@@ -23,17 +24,10 @@ import { AuthService } from '../../servicio/auth.service';
 })
 export class AdminLayoutComponent {
   darkMode = false;
-  constructor(private router: Router, private authService: AuthService) {}
-  toggleDarkMode() {
-    this.darkMode = !this.darkMode;
-    console.log('Toggle clicked. darkMode:', this.darkMode);
-
-    if (this.darkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-  }
+  constructor(private router: Router, private authService: AuthService,public themeService: ThemeService) {}
+  toggleDarkMode(): void {
+  this.themeService.toggleDarkMode();
+}
 
   logout() {
     this.authService.logout();

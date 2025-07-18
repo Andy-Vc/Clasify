@@ -204,3 +204,23 @@ body.dark-mode ::-webkit-scrollbar-thumb {
   background-color: var(--colorCyan);
   border-radius: 4px;
 }
+/* Placeholder visible en modo oscuro */
+body.dark-mode ::placeholder {
+  color: #aaa !important;
+  opacity: 1; 
+}
+
+/* Fondo formulario en modo claro */
+.form-container {
+  background-color: white;
+  box-shadow: 0 0 15px rgb(0 0 0 / 0.1);
+  border-radius: 0.5rem;
+}
+
+/* Fondo formulario en modo oscuro */
+body.dark-mode .form-container, body.dark-mode .form-registro {
+  background-color: #1e1e1e; /* gris oscuro */
+  box-shadow: 0 0 15px rgba(19, 199, 211, 0.3) !important; /* sombra cyan suave */
+  color: #e0e0e0; /* texto claro */
+}
+

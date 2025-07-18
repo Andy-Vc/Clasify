@@ -6,8 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Usuario } from '../../../model/usuario.model';
-import { ProfesorService } from '../../../servicio/profesor.service';
+import { Usuario } from '../../../shared/model/usuario.model';
+import { ProfesorService } from '../../service/profesor.service';
 import { AlertService } from '../../../util/alert.service';
 import { CommonModule } from '@angular/common';
 
@@ -38,7 +38,7 @@ export class UpdateProfesorComponent implements OnInit {
 
     this.profesorID = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.pf.getById(this.profesorID).subscribe({
+    this.pf.getByIdProfesor(this.profesorID).subscribe({
       next: (data: Usuario) => {
         this.profesorForm.patchValue(data);
       },
@@ -56,7 +56,7 @@ export class UpdateProfesorComponent implements OnInit {
         rol: 'P',
       };
 
-      this.pf.update(profesorActualizado).subscribe({
+      this.pf.updateProfesor(profesorActualizado).subscribe({
         next: (res) => {
           if (res.valor) {
             AlertService.success(res.mensaje);

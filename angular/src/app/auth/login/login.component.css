@@ -1,0 +1,63 @@
+html,
+body,
+.full-screen-container {
+  height: 100vh;
+  margin: 0;
+}
+
+.full-screen-container {
+  width: 100vw;
+}
+
+.swiper-slide img {
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Para que el swiper ocupe todo el alto de la columna */
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+  height: 100vh;
+}
+
+/* Ajustes para que el texto overlay sea legible */
+.overlay-text {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.bg-cyan {
+  background-color: var(--colorCyan) !important;
+}
+
+.text-cyan {
+  color: var(--colorCyan) !important;
+}
+
+.text-negro {
+  color: var(--colorNegro) !important;
+}
+
+.dark-mode {
+  position: absolute;
+  z-index: 1000;
+  left: 50.5%;
+  top: 25px;
+}
+
+.dark-mode i {
+  font-size: 25px;
+}
+
+@media (max-width: 950px) {
+  .carousel-container {
+    display: none !important;
+  }
+
+  .dark-mode {
+    left: 0;
+  }
+}

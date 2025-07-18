@@ -21,4 +21,7 @@ public class Grado {
 	
 	@Column(name="NOMBRE_GRADO", nullable = false, unique = true)
 	private String nombreGrado;
+	
+	@Column(name="FLGELIMINADO", columnDefinition = "BIT DEFAULT 0")
+	private Boolean flgEliminado = false; 
 }

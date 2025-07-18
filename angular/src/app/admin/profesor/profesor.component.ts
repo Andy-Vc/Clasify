@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfesorService } from '../../servicio/profesor.service';
+import { ProfesorService } from '../service/profesor.service';
 import { Router } from '@angular/router';
-import { Usuario } from '../../model/usuario.model';
+import { Usuario } from '../../shared/model/usuario.model';
 import { AlertService } from '../../util/alert.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class ProfesorComponent implements OnInit {
   }
 
   onList() {
-    this.profesorService.list().subscribe({
+    this.profesorService.listProfesor().subscribe({
       next: (data) => {
         this.teachers = data;
         console.log('Profesores:', this.teachers);
@@ -38,7 +38,7 @@ export class ProfesorComponent implements OnInit {
   }
 
   toggleEstado(teacher: Usuario) {
-    this.profesorService.delete(teacher.idUsuario!).subscribe({
+    this.profesorService.deleteProfesor(teacher.idUsuario!).subscribe({
       next: (res) => {
         AlertService.success(res.mensaje);
         // Cambiar estado local solo si se actualizó exitosamente

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../model/usuario.model';
+import { Usuario } from '../../shared/model/usuario.model';
 import { Observable } from 'rxjs';
-import { AutenticarUsuario } from '../dto/autenticarUsuario.model';
-import { ResultadoResponse } from '../dto/resultadoResponse.model';
-import { LoginResponse } from '../dto/loginResponse.model';
+import { AutenticarUsuario } from '../../shared/model/autenticarUsuario.model';
+import { ResultadoResponse } from '../../shared/model/resultadoResponse.model';
+import { LoginResponse } from '../../shared/model/loginResponse.model';
 
 @Injectable({
   providedIn: 'root',

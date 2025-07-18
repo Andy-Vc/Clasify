@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold">
+    <i class="fas fa-book me-2"></i>Listado de Cursos
+  </h2>
+  <button class="btn btn-success" (click)="crearCurso()" title="Agregar nuevo curso">
+    <i class="fas fa-plus me-1"></i> Nuevo Curso
+  </button>
+</div>
+
+<div *ngIf="loading" class="alert alert-info">
+  <i class="fas fa-spinner fa-spin me-2"></i> Cargando cursos...
+</div>
+
+<div *ngIf="!loading && curses.length === 0" class="alert alert-warning">
+  <i class="fas fa-exclamation-triangle me-2"></i> No hay cursos registrados.
+</div>
+
+<table *ngIf="!loading && curses.length > 0" class="table table-striped table-hover align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Nombre del Curso</th>
+      <th>Profesor</th>
+      <th>Grado</th>
+      <th>Estado</th>
+      <th class="text-center">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let curso of curses" class="align-middle">
+      <td>{{ curso.idCurso }}</td>
+      <td>{{ curso.nombreCurso }}</td>
+<td>{{ curso.idProfesor ? (curso.idProfesor.nombreUsuario + ' ' + curso.idProfesor.apellidoUsuario) : 'Sin asignar' }}</td>
+      <td>{{ curso.idGrado?.nombreGrado || 'Sin grado' }}</td>
+      <td>
+        <span class="badge" [ngClass]="curso.flgEliminado ? 'bg-danger' : 'bg-success'">
+          <i class="fas" [ngClass]="curso.flgEliminado ? 'fa-ban' : 'fa-check-circle'"></i>
+          &nbsp;{{ curso.flgEliminado ? 'Inactivo' : 'Activo' }}
+        </span>
+      </td>
+      <td class="text-center d-flex justify-content-center gap-3">
+        <button 
+          class="btn btn-sm btn-warning" 
+          (click)="editarCurso(curso)" 
+          title="Editar curso">
+          <i class="fas fa-edit"></i>
+        </button>
+<button 
+    class="btn btn-sm btn-info" 
+    (click)="detalleCurso(curso)" 
+    title="Ver detalles del curso">
+    <i class="fas fa-info-circle"></i>
+  </button>
+        <div class="form-check form-switch m-0 d-flex align-items-center"
+             [title]="curso.flgEliminado ? 'Activar curso' : 'Desactivar curso'">
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            [checked]="!curso.flgEliminado"
+            (change)="toggleEstado(curso)"
+            id="switch-{{curso.idCurso}}" />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

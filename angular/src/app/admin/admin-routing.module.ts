@@ -13,6 +13,14 @@ const routes: Routes = [
         path: 'profesor',
         loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule),data: { title: 'Profesores' }
       },
+      {
+        path: 'grado',
+        loadChildren: () => import('./grado/grado.module').then(m => m.GradoModule),data: { title: 'Grados' }
+      },
+      {
+        path: 'curso',
+        loadChildren: () => import('./curso/curso.module').then(m => m.CursoModule),data: { title: 'Cursos' }
+      },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }

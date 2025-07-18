@@ -11,7 +11,7 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-
+  title = 'angular';
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,

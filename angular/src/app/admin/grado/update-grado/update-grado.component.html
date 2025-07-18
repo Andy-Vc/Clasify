@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <!-- Título -->
+  <div class="mb-4 d-flex align-items-center">
+    <i class="fas fa-edit fa-lg text-warning me-2 f-30px"></i>
+    <h3 class="mb-0 fw-bold text-warning">Actualizar Grado</h3>
+  </div>
+
+  <div class="card shadow">
+    <div class="card-body px-4 py-4">
+      <form [formGroup]="gradoForm" (ngSubmit)="guardar()">
+
+        <!-- ID Grado -->
+        <div class="mb-3">
+          <label for="idGrado" class="form-label">
+            <i class="fas fa-id-badge me-1"></i>ID Grado
+          </label>
+          <input type="text" id="idGrado" class="form-control" formControlName="idGrado" readonly />
+        </div>
+
+        <!-- Nombre del Grado -->
+        <div class="mb-3">
+          <label for="nombreGrado" class="form-label">
+            <i class="fas fa-tag me-1"></i>Nombre del Grado
+          </label>
+          <input
+            type="text"
+            id="nombreGrado"
+            class="form-control"
+            formControlName="nombreGrado"
+            placeholder="Ingrese el nombre del grado"
+            [ngClass]="{
+              'is-invalid':
+                gradoForm.get('nombreGrado')?.invalid &&
+                gradoForm.get('nombreGrado')?.touched
+            }"
+          />
+          <div class="invalid-feedback">
+            El nombre del grado es obligatorio.
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-between mt-4">
+          <button type="submit" class="btn btn-warning">
+            <i class="fas fa-save me-1"></i>Actualizar
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="list()">
+            <i class="fas fa-arrow-left me-1"></i>Volver a la lista
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

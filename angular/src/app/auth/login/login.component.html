@@ -1,5 +1,5 @@
 <div class="full-screen-container d-flex">
-  <div class="d-none d-md-block col-md-6 p-0 position-relative">
+  <div class="d-none d-md-block col-md-6 p-0 position-relative carousel-container">
     <div class="swiper mySwiper h-100">
       <div class="swiper-wrapper">
         <div class="swiper-slide position-relative">
@@ -30,14 +30,22 @@
       </div>
     </div>
   </div>
+  <div>
 
-  <div class="position-absolute top-0 end-0 d-flex align-items-center">
-    <img src="assets/img/logo.png" alt="Logo" style="height: 100px;" />
-    <h2 class="m-0 fw-bold text-cyan pe-4 text-uppercase">Clasify</h2>
+    <div class="position-absolute top-0 end-0 d-flex align-items-center">
+      <img src="assets/img/logo.png" class="logo-img" alt="Logo" style="height: 100px;" />
+      <h2 class="m-0 fw-bold text-cyan pe-4 text-uppercase">Clasify</h2>
+    </div>
+    <div class="dark-mode">
+      <button class="btn btn-outline-black" (click)="toggleDarkMode()" aria-label="Toggle dark mode">
+        <i class="fas" [ngClass]="{ 'fa-moon': !darkMode, 'fa-sun': darkMode }"></i>
+      </button>
+    </div>
   </div>
 
-  <div class="col-12 col-md-6 bg-white d-flex flex-column justify-content-center px-5 py-4 shadow rounded"
-    style="max-width: 450px; margin: auto; position: relative;">
+  <div class="col-12 col-md-6 d-flex flex-column justify-content-center px-5 py-4 form-container"
+  style="max-width: 450px; margin: auto; position: relative;">
+
     <h3 class="text-center mb-4 text-cyan mt-5 pt-3">
       <i class="fas fa-sign-in-alt me-2 "></i>Iniciar Sesión
     </h3>

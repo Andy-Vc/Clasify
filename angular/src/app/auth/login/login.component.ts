@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { AuthService } from '../../servicio/auth.service';
-import { AutenticarUsuario } from '../../dto/autenticarUsuario.model';
+import { AuthService } from '../service/auth.service';
+import { AutenticarUsuario } from '../../shared/model/autenticarUsuario.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,7 +8,8 @@ import { AlertService } from '../../util/alert.service';
 import { Router } from '@angular/router';
 import Swiper from 'swiper';
 import { Autoplay } from 'swiper/modules';
-import { LoginResponse } from '../../dto/loginResponse.model';
+import { LoginResponse } from '../../shared/model/loginResponse.model';
+import { ThemeService } from '../../shared/services/theme.service';
 Swiper.use([Autoplay]);
 
 @Component({
@@ -31,8 +32,8 @@ export class LoginComponent implements AfterViewInit {
   email = '';
   contrasenia = '';
 
-  constructor(private AuthService: AuthService, private router: Router) {}
-
+  constructor(private AuthService: AuthService, private router: Router, private themeService: ThemeService) {}
+darkMode = false;
   onLogin() {
     const credentials: AutenticarUsuario = {
       email: this.email,
@@ -74,9 +75,11 @@ export class LoginComponent implements AfterViewInit {
       },
     });
   }
-
+toggleDarkMode(): void {
+  this.themeService.toggleDarkMode();
+}
   onRegister() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/auth/register']);
   }
 
   mostrarPassword: boolean = false;
