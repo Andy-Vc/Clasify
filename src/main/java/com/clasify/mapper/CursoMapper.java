@@ -15,7 +15,6 @@ public class CursoMapper {
 	    if (curso == null) {
 	        return null;
 	    }
-
 	    Usuario profesor = curso.getIdProfesor();
 	    UsuarioDTO profesorDTO = null;
 	    if (profesor != null) {

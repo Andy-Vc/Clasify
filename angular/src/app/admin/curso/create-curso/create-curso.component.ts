@@ -6,14 +6,19 @@ import { GradoService } from '../../service/grado.service';
 import { CursoService } from '../../service/curso.service';
 import { Usuario } from '../../../shared/model/usuario.model';
 import { AlertService } from '../../../util/alert.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-curso',
-  imports: [CommonModule,FormsModule,     
-    ReactiveFormsModule  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './create-curso.component.html',
 })
 export class CreateCursoComponent implements OnInit {
@@ -35,7 +40,7 @@ export class CreateCursoComponent implements OnInit {
     this.cursoForm = this.fb.group({
       nombreCurso: ['', Validators.required],
       idProfesor: [null, Validators.required],
-  idGrado: [null, Validators.required],
+      idGrado: [null, Validators.required],
     });
     this.listarProfesores();
     this.listarGrados();

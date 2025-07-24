@@ -1,0 +1,93 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold">
+    <i class="fas fa-user-graduate me-2"></i>Listado de Estudiantes
+  </h2>
+</div>
+
+<div *ngIf="loading" class="alert alert-info">
+  <i class="fas fa-spinner fa-spin me-2"></i> Cargando estudiantes...
+</div>
+
+<div *ngIf="!loading && estudiantes.length === 0" class="alert alert-warning">
+  <i class="fas fa-exclamation-triangle me-2"></i> No hay estudiantes cargados.
+</div>
+
+<table *ngIf="!loading && estudiantes.length > 0" class="table table-striped table-hover align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>ID Usuario</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Rol</th>
+      <th>Estado</th>
+      <th class="text-center">Cursos Inscritos</th> <!-- Ahora botón -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let estudiante of estudiantes" class="align-middle">
+      <td>{{ estudiante.idUsuario }}</td>
+      <td>{{ estudiante.nombreUsuario }}</td>
+      <td>{{ estudiante.apellidoUsuario }}</td>
+      <td>{{ estudiante.email }}</td>
+      <td>{{ estudiante.rolDescripcion }}</td>
+      <td>
+        <span class="badge" [ngClass]="estudiante.flgEliminado ? 'bg-danger' : 'bg-success'">
+          <i class="fas" [ngClass]="estudiante.flgEliminado ? 'fa-user-slash' : 'fa-user-check'"></i>
+          &nbsp;{{ estudiante.flgEliminado ? 'Inactivo' : 'Activo' }}
+        </span>
+      </td>
+      <td class="d-flex align-items-center justify-content-center">
+        <button class="btn btn-info btn-sm d-flex align-items-center gap-2 text-white"
+          (click)="abrirModalCursos(estudiante)">
+          <i class="fas fa-book-reader fa-sm"></i>
+          Ver Cursos
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- Modal backdrop -->
+<div class="modal fade" tabindex="-1" [ngClass]="{ 'show': mostrarModal }"
+  [ngStyle]="mostrarModal ? { display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' } : { display: 'none' }"
+  (click)="cerrarModalCursos()">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-slide-down modal-lg"
+    (click)="$event.stopPropagation()">
+    <div class="modal-content shadow-lg rounded-4">
+      <div class="modal-header bg-cyan text-white">
+        <h4 class="modal-title d-flex align-items-center gap-2">
+          <i class="fas fa-book"></i>
+          Cursos Inscritos de {{ estudianteSeleccionado?.nombreUsuario }} {{ estudianteSeleccionado?.apellidoUsuario }}
+        </h4>
+        <button type="button" class="btn btn-close btn-close-white" aria-label="Close"
+          (click)="cerrarModalCursos()"></button>
+      </div>
+      <div class="modal-body p-4">
+        <ul *ngIf="cursosDelEstudiante.length > 0; else sinCursos" class="list-group">
+          <li *ngFor="let cursoInscrito of cursosDelEstudiante"
+            class="list-group-item d-flex flex-column justify-content-between align-items-start gap-1 py-3"
+            style="cursor: default; transition: background-color 0.2s ease;">
+            <div class="d-flex align-items-center gap-2 fw-semibold fs-5 text-primary">
+              <h5 class="fw-bold text-cyan"><i class="fas fa-check-circle text-success"></i>
+                {{ cursoInscrito?.curso?.nombreCurso }}</h5>
+            </div>
+            <div class="text-secondary d-flex align-items-center gap-1 small">
+              <h5><i class="fas fa-chalkboard-teacher"></i>
+                {{ cursoInscrito?.curso?.idProfesor?.nombreUsuario }} {{
+                cursoInscrito?.curso?.idProfesor?.apellidoUsuario
+                }}</h5>
+            </div>
+          </li>
+        </ul>
+        <ng-template #sinCursos>
+          <p class="text-center fst-italic text-muted">No está inscrito en ningún curso.</p>
+        </ng-template>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" (click)="cerrarModalCursos()">
+          <i class="fas fa-times me-1"></i> Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

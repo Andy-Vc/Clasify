@@ -2,11 +2,15 @@ package com.clasify.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.clasify.dto.AutenticacionUsuario;
+import com.clasify.dto.EstudianteDTO;
 import com.clasify.dto.ResultadoResponse;
+import com.clasify.dto.UsuarioDTO;
+import com.clasify.mapper.UsuarioMapper;
 import com.clasify.model.Usuario;
 import com.clasify.repository.IUsuarioRepository;
 
@@ -14,9 +18,11 @@ import com.clasify.repository.IUsuarioRepository;
 public class UsuarioService {
 	private IUsuarioRepository repository;
 	private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	private UsuarioMapper usuarioMapper;
 	
-	private UsuarioService(IUsuarioRepository repository) {
-		this.repository = repository;
+	public UsuarioService(IUsuarioRepository repository, UsuarioMapper usuarioMapper) {
+	    this.repository = repository;
+	    this.usuarioMapper = usuarioMapper;
 	}
 	
 	public long countStudents() {
@@ -31,8 +37,24 @@ public class UsuarioService {
 		return repository.findById(id).orElseThrow();
 	}
 	
+	public UsuarioDTO getUsuarioDTOByEmail(String email) {
+	    Usuario usuario = repository.findByEmail(email);
+	    return UsuarioMapper.toDTO(usuario);
+	}
+
+	
+	public List<UsuarioDTO> getNewlyRegistered(){
+		List<Usuario> estudiantes = repository.findTop5UsuariosRolE(PageRequest.of(0,5));
+		return UsuarioMapper.convertirUserDTOs(estudiantes);
+	}
+	
 	public List<Usuario> getTeachers(){
 		return repository.findTeachers();
+	}
+	
+	public List<EstudianteDTO> getStudentsDTO() {
+	    List<Usuario> estudiantes = repository.findStudents();
+	    return usuarioMapper.convertirAEstudianteDTOs(estudiantes);
 	}
 	
 	public Usuario autenticar(AutenticacionUsuario filtro) {

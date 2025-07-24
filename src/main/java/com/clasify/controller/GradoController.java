@@ -18,7 +18,7 @@ import com.clasify.model.Grado;
 import com.clasify.service.GradoService;
 
 @RestController
-@RequestMapping("/grado")
+@RequestMapping("/admin/grado")
 public class GradoController {
 	private GradoService gradoService;
 

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CursoService extends GenericService<CursoDTO> {
-  private baseUrl = 'http://localhost:8080/curso';
+  private baseUrl = 'http://localhost:8080/admin/curso';
 
   constructor(http: HttpClient) {
     super(http); 

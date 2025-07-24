@@ -31,6 +31,13 @@ public class CursoService {
                      .collect(Collectors.toList());
     }
 
+    public List<CursoEstudiantesDTO> getAllByTeacher(Integer idProfesor) {
+        List<Curso> cursos = repository.findByIdProfesor_IdUsuario(idProfesor);
+        return cursos.stream()
+                     .map(CursoMapper::getDetalleDTO)
+                     .collect(Collectors.toList());
+    }
+    
     public CursoEstudiantesDTO getCurseStudents(String idCurso) {
         Curso curso = repository.findById(idCurso).orElseThrow();
         return CursoMapper.getDetalleDTO(curso);

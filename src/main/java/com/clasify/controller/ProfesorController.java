@@ -18,7 +18,7 @@ import com.clasify.model.Usuario;
 import com.clasify.service.UsuarioService;
 
 @RestController
-@RequestMapping("/profesor")
+@RequestMapping("/admin/profesor")
 public class ProfesorController {
 	private final UsuarioService usuarioService;
 

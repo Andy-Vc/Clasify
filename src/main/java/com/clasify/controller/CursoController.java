@@ -19,7 +19,7 @@ import com.clasify.dto.ResultadoResponse;
 import com.clasify.service.CursoService;
 
 @RestController
-@RequestMapping("/curso")
+@RequestMapping("/admin/curso")
 public class CursoController {
 	private CursoService cursoService;
 

@@ -7,7 +7,7 @@ import { GenericService } from '../../shared/services/generic.service';
   providedIn: 'root',
 })
 export class GradoService extends GenericService<Grado> {
-  private baseUrl = 'http://localhost:8080/grado';
+  private baseUrl = 'http://localhost:8080/admin/grado';
 
   constructor(http: HttpClient) {
     super(http); 

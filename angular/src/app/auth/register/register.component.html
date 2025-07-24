@@ -11,21 +11,26 @@
         </div>
     </div>
 
-<div class="form-registro form-container col-12 col-md-6 d-flex flex-column justify-content-center p-4 shadow rounded position-relative" style="margin: auto;">
+    <div class="form-registro form-container col-12 col-md-6 d-flex flex-column justify-content-center p-4 shadow rounded position-relative"
+        style="margin: auto;">
 
         <h3 class="text-center mb-4 text-cyan mt-3 pt-3">
             <i class="fas fa-user-plus me-2"></i>Regístrate
         </h3>
 
-        <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+        <form (ngSubmit)="onRegister()" [formGroup]="registerForm">
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="mb-4">
                         <label for="nombre" class="form-label fw-semibold text-negro">Nombre</label>
                         <div class="input-group">
                             <span class="input-group-text bg-cyan text-white"><i class="fas fa-id-badge"></i></span>
-                            <input id="nombre" name="nombre" [(ngModel)]="nombre" class="form-control"
-                                placeholder="Ingresa tu nombre" required>
+                            <input id="nombre" formControlName="nombreUsuario" class="form-control"
+                                placeholder="Ingresa tu nombre" />
+                        </div>
+                        <div *ngIf="registerForm.get('nombreUsuario')?.touched && registerForm.get('nombreUsuario')?.invalid"
+                            class="text-danger">
+                            El nombre es obligatorio.
                         </div>
                     </div>
 
@@ -33,8 +38,12 @@
                         <label for="email" class="form-label fw-semibold text-negro">Correo Electrónico</label>
                         <div class="input-group">
                             <span class="input-group-text bg-cyan text-white"><i class="fas fa-envelope"></i></span>
-                            <input id="email" name="email" type="email" [(ngModel)]="email" class="form-control"
-                                placeholder="ejemplo@correo.com" required>
+                            <input id="email" type="email" formControlName="email" class="form-control"
+                                placeholder="ejemplo@correo.com" />
+                        </div>
+                        <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+                            class="text-danger">
+                            Ingresa un correo válido.
                         </div>
                     </div>
                 </div>
@@ -44,8 +53,12 @@
                         <label for="apellido" class="form-label fw-semibold text-negro">Apellido</label>
                         <div class="input-group">
                             <span class="input-group-text bg-cyan text-white"><i class="fas fa-id-card"></i></span>
-                            <input id="apellido" name="apellido" [(ngModel)]="apellido" class="form-control"
-                                placeholder="Ingresa tu apellido" required>
+                            <input id="apellido" formControlName="apellidoUsuario" class="form-control"
+                                placeholder="Ingresa tu apellido" />
+                        </div>
+                        <div *ngIf="registerForm.get('apellidoUsuario')?.touched && registerForm.get('apellidoUsuario')?.invalid"
+                            class="text-danger">
+                            El apellido es obligatorio.
                         </div>
                     </div>
 
@@ -55,19 +68,22 @@
                             <span class="input-group-text bg-cyan text-white">
                                 <i class="fas fa-lock"></i>
                             </span>
-
-                            <input [type]="mostrarPassword ? 'text' : 'password'" id="password" name="password"
-                                class="form-control" [(ngModel)]="contrasenia" required placeholder="*****" />
+                            <input [type]="mostrarPassword ? 'text' : 'password'" id="password"
+                                formControlName="contrasenia" class="form-control" placeholder="*****" />
                             <span class="input-group-text" (click)="togglePassword()" style="cursor: pointer;">
                                 <i class="fas" [ngClass]="mostrarPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
                             </span>
+                        </div>
+                        <div *ngIf="registerForm.get('contrasenia')?.touched && registerForm.get('contrasenia')?.invalid"
+                            class="text-danger">
+                            La contraseña es obligatorio.
                         </div>
                     </div>
                 </div>
             </div>
 
             <button type="submit" class="btn w-100 fw-semibold d-flex align-items-center justify-content-center mb-3"
-                [disabled]="!registerForm.form.valid" style="background-color: var(--colorCyan); color: white;">
+                [disabled]="registerForm.invalid" style="background-color: var(--colorCyan); color: white;">
                 <i class="fas fa-user-check me-2"></i>Registrarse
             </button>
 
@@ -77,6 +93,7 @@
                 </button>
             </div>
         </form>
+
     </div>
 
     <div class="d-none d-md-block col-md-6 p-0 position-relative carousel-container">

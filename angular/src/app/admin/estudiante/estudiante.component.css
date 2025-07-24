@@ -1,0 +1,76 @@
+/* ANIMACIÓN: Entrada suave desde arriba */
+.modal-slide-down {
+  animation: slideDown 0.35s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* BACKDROP: Transición suave de fondo oscuro */
+.modal.fade {
+  transition: background-color 0.35s ease;
+}
+
+/* ESTILOS DEL BOTÓN DE CIERRE (esquina superior) */
+.btn-close {
+  font-size: 1.3rem;
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-close:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ITEM DE CURSO */
+.list-group-item {
+  background-color: transparent;
+  cursor: default;
+  transition: background-color 0.25s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.list-group-item:hover {
+  background-color: rgba(0, 123, 255, 0.08)!important;
+}
+
+/* TEXTO PROFESOR CON ÍCONO */
+.text-muted i {
+  color: #6c757d;
+}
+
+/* CLASES PARA MOSTRAR/OCULTAR MODAL MANUALMENTE */
+.modal-visible {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-hidden {
+  display: none;
+}
+
+/* MODAL GRANDE PARA PANTALLAS AMPLIAS */
+@media (min-width: 992px) {
+  .modal-lg {
+    max-width: 900px;
+  }
+}

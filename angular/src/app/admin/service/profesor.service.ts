@@ -7,7 +7,7 @@ import { GenericService } from '../../shared/services/generic.service';
   providedIn: 'root',
 })
 export class ProfesorService extends GenericService<Usuario> {
-  private baseUrl = 'http://localhost:8080/profesor';
+  private baseUrl = 'http://localhost:8080/admin/profesor';
 
   constructor(http: HttpClient) {
     super(http); 

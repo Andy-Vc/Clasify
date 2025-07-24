@@ -30,7 +30,8 @@
     <tr *ngFor="let curso of curses" class="align-middle">
       <td>{{ curso.idCurso }}</td>
       <td>{{ curso.nombreCurso }}</td>
-<td>{{ curso.idProfesor ? (curso.idProfesor.nombreUsuario + ' ' + curso.idProfesor.apellidoUsuario) : 'Sin asignar' }}</td>
+      <td>{{ curso.idProfesor ? (curso.idProfesor.nombreUsuario + ' ' + curso.idProfesor.apellidoUsuario) : 'Sin
+        asignar' }}</td>
       <td>{{ curso.idGrado?.nombreGrado || 'Sin grado' }}</td>
       <td>
         <span class="badge" [ngClass]="curso.flgEliminado ? 'bg-danger' : 'bg-success'">
@@ -39,25 +40,15 @@
         </span>
       </td>
       <td class="text-center d-flex justify-content-center gap-3">
-        <button 
-          class="btn btn-sm btn-warning" 
-          (click)="editarCurso(curso)" 
-          title="Editar curso">
+        <button class="btn btn-sm btn-warning" (click)="editarCurso(curso)" title="Editar curso">
           <i class="fas fa-edit"></i>
         </button>
-<button 
-    class="btn btn-sm btn-info" 
-    (click)="detalleCurso(curso)" 
-    title="Ver detalles del curso">
-    <i class="fas fa-info-circle"></i>
-  </button>
+        <button class="btn btn-sm btn-info" (click)="detalleCurso(curso)" title="Ver detalles del curso">
+          <i class="fas fa-info-circle"></i>
+        </button>
         <div class="form-check form-switch m-0 d-flex align-items-center"
-             [title]="curso.flgEliminado ? 'Activar curso' : 'Desactivar curso'">
-          <input 
-            class="form-check-input" 
-            type="checkbox" 
-            [checked]="!curso.flgEliminado"
-            (change)="toggleEstado(curso)"
+          [title]="curso.flgEliminado ? 'Activar curso' : 'Desactivar curso'">
+          <input class="form-check-input" type="checkbox" [checked]="!curso.flgEliminado" (change)="toggleEstado(curso)"
             id="switch-{{curso.idCurso}}" />
         </div>
       </td>

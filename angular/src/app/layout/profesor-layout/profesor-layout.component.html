@@ -1,11 +1,96 @@
-<div class="estudiante-layout">
-  <header class="header">
-    <h2>Panel profesor</h2>
+<div [class.dark-theme]="darkMode" class="d-flex flex-column min-vh-100">
+  <!-- Header -->
+  <header class="navbar navbar-expand-lg sticky-top shadow-sm custom-navbar px-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center px-0">
+      <!-- Logo y título -->
+      <div class="d-flex align-items-center" style="margin: -10px 0px;">
+        <img src="assets/img/logo.png" alt="Logo" class="logo-img pe-2" />
+        <h2 class="m-0 fw-bold text-cyan text-uppercase">Clasify</h2>
+      </div>
+
+      <!-- Botones -->
+      <div class="d-flex align-items-center gap-2">
+        <!-- Sidebar móvil -->
+        <button class="btn btn-outline-black d-lg-none" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#sidebarProfesorMobile" aria-label="Abrir menú">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Modo oscuro -->
+        <button class="btn btn-outline-black" (click)="toggleDarkMode()" aria-label="Toggle dark mode">
+          <i class="fas" [ngClass]="{ 'fa-moon': !darkMode, 'fa-sun': darkMode }"></i>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <main class="content">
-    <router-outlet></router-outlet>
-  </main>
+  <!-- Main Container -->
+  <div class="container-fluid flex-grow-1">
+    <div class="row">
+      <!-- Sidebar Desktop -->
+      <nav id="sidebarProfesorDesktop"
+        class="col-lg-2 d-none d-lg-block sidebar border-end h-100vh p-0 d-flex flex-column justify-content-between p-fixed">
+        <div class="list-group list-group-flush">
+          <a routerLink="/profesor/dashboard" routerLinkActive="active" class="nav-link-item">
+            <i class="fas fa-home me-2"></i> Inicio
+          </a>
+          <a routerLink="/profesor/curso" routerLinkActive="active" class="nav-link-item">
+            <i class="fas fa-book me-2"></i> Mis Cursos
+          </a>
+          <a routerLink="/profesor/estudiantes" routerLinkActive="active" class="nav-link-item">
+            <i class="fas fa-users me-2"></i> Estudiantes
+          </a>
+          <a routerLink="/profesor/calificaciones" routerLinkActive="active" class="nav-link-item">
+            <i class="fas fa-clipboard-list me-2"></i> Calificaciones
+          </a>
+        </div>
 
-  <app-profesor-footer></app-profesor-footer>
+        <div class="p-3 border-top button-close-down">
+          <button class="btn btn-outline-danger w-100" (click)="logout()">
+            <i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión
+          </button>
+        </div>
+      </nav>
+
+      <!-- Sidebar Mobile -->
+      <nav id="sidebarProfesorMobile" class="offcanvas offcanvas-start d-lg-none border-end h-100vh padding-0" tabindex="-1"
+        aria-labelledby="offcanvasProfesorLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasProfesorLabel">Menú</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+            aria-label="Cerrar menú"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-0 h-100">
+          <div class="list-group list-group-flush">
+            <a routerLink="/profesor/dashboard" routerLinkActive="active" class="nav-link-item" data-bs-dismiss="offcanvas">
+              <i class="fas fa-home me-2"></i> Inicio
+            </a>
+           <a routerLink="/profesor/curso" routerLinkActive="active" class="nav-link-item"
+              data-bs-dismiss="offcanvas">
+              <i class="fas fa-book me-2"></i> Mis Cursos
+            </a>
+            <a routerLink="/profesor/estudiantes" routerLinkActive="active" class="nav-link-item"
+              data-bs-dismiss="offcanvas">
+              <i class="fas fa-users me-2"></i> Estudiantes
+            </a>
+            <a routerLink="/profesor/calificaciones" routerLinkActive="active" class="nav-link-item"
+              data-bs-dismiss="offcanvas">
+              <i class="fas fa-clipboard-list me-2"></i> Calificaciones
+            </a>
+          </div>
+
+          <div class="p-3 border-top">
+            <button class="btn btn-outline-danger w-100" (click)="logout()">
+              <i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="col-lg-10 ms-auto px-4 py-4">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
 </div>

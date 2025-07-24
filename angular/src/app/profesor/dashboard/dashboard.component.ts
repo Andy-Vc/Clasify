@@ -1,8 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../admin/service/admin.service';
+import { UsuarioDTO } from '../../shared/model/usuarioDTO.model';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   standalone:true
 })
-export class DashboardComponent {}
+export class DashboardComponent implements OnInit{
+  usuario!: UsuarioDTO;
+
+  constructor(private adminService: AdminService ) { 
+  }
+
+  ngOnInit(): void {
+    const usuarioGuardado = localStorage.getItem('usuario');
+    if (usuarioGuardado) {
+      this.usuario = JSON.parse(usuarioGuardado);
+    }
+  }
+}

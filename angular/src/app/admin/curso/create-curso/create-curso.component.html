@@ -29,9 +29,9 @@
               'is-invalid': cursoForm.get('idProfesor')?.invalid && cursoForm.get('idProfesor')?.touched
             }">
                         <option [ngValue]="null" disabled>Seleccione un profesor</option>
-<option *ngFor="let prof of profesores" [ngValue]="prof">
-  {{ prof.nombreUsuario }} {{ prof.apellidoUsuario }}
-</option>
+                        <option *ngFor="let prof of profesores" [ngValue]="prof">
+                            {{ prof.nombreUsuario }} {{ prof.apellidoUsuario }}
+                        </option>
                     </select>
                     <div class="invalid-feedback">Seleccione un profesor.</div>
                 </div>
