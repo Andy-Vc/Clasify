@@ -41,7 +41,7 @@ public class CursoProfesorController {
 
 	        return ResponseEntity.ok(cursos);
 	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido o expirado.");
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido o expirado." + e.getMessage());
 	    }
 	}
 

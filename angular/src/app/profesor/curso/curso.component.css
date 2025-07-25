@@ -1,0 +1,50 @@
+.modal-dialog {
+    margin: 0 0 0 6rem !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+}
+
+.modal-header{
+    padding: 3px !important;
+    margin: 0 10px 0 5px !important;
+}
+.modal-img {
+    padding: 20px;
+    width: 100%;  
+    max-width: 100%;
+}
+
+.modal-img img {
+    width: 100%;     
+    height: auto;   
+    max-height: 300px; 
+    border-radius: 10px; 
+    display: block; 
+}
+
+
+.modal-content {
+    height: 100%;
+}
+
+.btn-close {
+    margin: 0 !important;
+}
+
+body.dark-mode .list-group-item-success:hover,
+body.dark-mode .list-group-item-success.active {
+  background-color: #1e4620 !important; /* fondo verde oscuro similar al original */
+  color: #a8e6a1 !important; /* texto verde claro */
+}
+
+body.dark-mode .list-group-item-warning:hover,
+body.dark-mode .list-group-item-warning.active {
+  background-color: #7f6600 !important; /* fondo amarillo oscuro similar al original */
+  color: #f1d58b !important; /* texto amarillo claro */
+}
+
+body.dark-mode .list-group-item-danger:hover,
+body.dark-mode .list-group-item-danger.active {
+  background-color: #5a1c1c !important; /* fondo rojo oscuro similar al original */
+  color: #f79999 !important; /* texto rojo claro */
+}

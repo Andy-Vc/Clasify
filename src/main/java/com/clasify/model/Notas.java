@@ -25,11 +25,14 @@ public class Notas {
 	
 	@ManyToOne
 	@JoinColumn(name="ID_CURSO", nullable = false)
-	private Curso idCurso;
+	private Curso curso;
 	
 	@ManyToOne
 	@JoinColumn(name="ID_USUARIO", nullable = false)
-	private Usuario idEstudiante;
+	private Usuario usuario;
+	
+	@Column(name="NRO_NOTA")
+	private int nroNota;
 	
 	@Column(name="CALIFICACION", nullable = false)
 	private Double calificacion;
@@ -37,6 +40,6 @@ public class Notas {
 	@Column(name="COMENTARIO")
 	private String comentario;
 	
-	@Column(name="FECHA_REGISTRO", columnDefinition = "DATETIME DEFAULT GETDATE()")
+	@Column(name="FECHA_REGISTRO", insertable = false, updatable = false)
 	private LocalDate fechaRegistro;
 }

@@ -41,7 +41,6 @@ public class UsuarioService {
 	    Usuario usuario = repository.findByEmail(email);
 	    return UsuarioMapper.toDTO(usuario);
 	}
-
 	
 	public List<UsuarioDTO> getNewlyRegistered(){
 		List<Usuario> estudiantes = repository.findTop5UsuariosRolE(PageRequest.of(0,5));

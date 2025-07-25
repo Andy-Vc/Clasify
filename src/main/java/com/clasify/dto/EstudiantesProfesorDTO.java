@@ -1,5 +1,7 @@
 package com.clasify.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,10 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UsuarioDTO {
+public class EstudiantesProfesorDTO {
 	private Integer idUsuario;
-	private String nombreUsuario;
-	private String apellidoUsuario;
-	private String email;
-	private String rol;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private List<NotaDTO> notas;
+    private Double promedio;
+
 }

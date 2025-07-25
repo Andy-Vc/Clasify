@@ -19,6 +19,5 @@ public class CursoEstudiantesDTO {
     private UsuarioDTO idProfesor;
     private Grado idGrado;
     private Boolean flgEliminado;
-
-    private List<UsuarioDTO> estudiantes; 
+    private List<EstudiantesProfesorDTO> estudiantes; 
 }

@@ -49,7 +49,7 @@
             <tbody>
               <tr *ngFor="let estudiante of curso.estudiantes; index as i">
                 <td>{{ i + 1 }}</td>
-                <td>{{ estudiante.nombreUsuario }} {{ estudiante.apellidoUsuario }}</td>
+                <td>{{ estudiante.nombre }} {{ estudiante.apellido }}</td>
                 <td><i class="fas fa-envelope me-1 text-muted"></i>{{ estudiante.email }}</td>
               </tr>
             </tbody>

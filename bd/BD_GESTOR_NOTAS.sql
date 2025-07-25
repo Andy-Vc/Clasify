@@ -54,6 +54,7 @@ CREATE TABLE TB_NOTAS (
     ID_NOTA INT IDENTITY(1,1) PRIMARY KEY,
     ID_CURSO VARCHAR(13) NOT NULL,
     ID_USUARIO INT NOT NULL,
+	NRO_NOTA TINYINT NOT NULL CHECK (NRO_NOTA BETWEEN 1 AND 4),
     CALIFICACION DECIMAL(5,2) NOT NULL,
     COMENTARIO VARCHAR(255),
     FECHA_REGISTRO DATE DEFAULT GETDATE(),
@@ -99,11 +100,41 @@ VALUES
 ('HIST2LG04', 5);
 
 --Notas
-INSERT INTO TB_NOTAS (ID_CURSO, ID_USUARIO, CALIFICACION, COMENTARIO)
+INSERT INTO TB_NOTAS (ID_CURSO, ID_USUARIO, NRO_NOTA, CALIFICACION, COMENTARIO)
 VALUES
-('MATE1CR01', 3, 15.50, 'Buen rendimiento'),
-('MATE1CR01', 4, 17.25, 'Excelente trabajo'),
-('LENG2CR02', 3, 14.00, 'Debe mejorar la redacción'),
-('LENG2CR02', 5, 18.00, 'Participación destacada'),
-('FISI1LG03', 4, 13.75, 'Entregó todas las prácticas'),
-('HIST2LG04', 5, 19.00, 'Gran presentación final');
+-- Usuario 3, Curso MATE1CR01, notas 1 a 4
+('MATE1CR01', 3, 1, 15.50, 'Buen rendimiento'),
+('MATE1CR01', 3, 2, 16.00, 'Mejoró en el segundo parcial'),
+('MATE1CR01', 3, 3, 14.75, 'Debe repasar más'),
+('MATE1CR01', 3, 4, 17.00, 'Buen cierre'),
+
+-- Usuario 4, Curso MATE1CR01, notas 1 a 4
+('MATE1CR01', 4, 1, 17.25, 'Excelente trabajo'),
+('MATE1CR01', 4, 2, 18.00, 'Muy constante'),
+('MATE1CR01', 4, 3, 17.50, 'Buen desempeño'),
+('MATE1CR01', 4, 4, 19.00, 'Destacado'),
+
+-- Usuario 3, Curso LENG2CR02, notas 1 a 4
+('LENG2CR02', 3, 1, 14.00, 'Debe mejorar la redacción'),
+('LENG2CR02', 3, 2, 15.00, 'Mejoría visible'),
+('LENG2CR02', 3, 3, 13.50, 'Debe esforzarse más'),
+('LENG2CR02', 3, 4, 16.00, 'Buen esfuerzo final'),
+
+-- Usuario 5, Curso LENG2CR02, notas 1 a 4
+('LENG2CR02', 5, 1, 18.00, 'Participación destacada'),
+('LENG2CR02', 5, 2, 17.50, 'Muy buen análisis'),
+('LENG2CR02', 5, 3, 18.25, 'Constante en sus entregas'),
+('LENG2CR02', 5, 4, 19.00, 'Excelente presentación'),
+
+-- Usuario 4, Curso FISI1LG03, notas 1 a 4
+('FISI1LG03', 4, 1, 13.75, 'Entregó todas las prácticas'),
+('FISI1LG03', 4, 2, 14.50, 'Mejoró en la teoría'),
+('FISI1LG03', 4, 3, 14.00, 'Regular desempeño'),
+('FISI1LG03', 4, 4, 15.00, 'Buen cierre'),
+
+-- Usuario 5, Curso HIST2LG04, notas 1 a 4
+('HIST2LG04', 5, 1, 19.00, 'Gran presentación final'),
+('HIST2LG04', 5, 2, 18.50, 'Muy buen análisis'),
+('HIST2LG04', 5, 3, 18.75, 'Constante en el curso'),
+('HIST2LG04', 5, 4, 19.25, 'Excelente desempeño final');
+

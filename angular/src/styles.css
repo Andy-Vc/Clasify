@@ -39,6 +39,28 @@ body,
   transform: translateX(0);
 }
 
+.btn-outline-cyan {
+  border: 1px solid var(--colorCyan) !important;
+  color: var(--colorCyan) !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-cyan:hover {
+  background-color: var(--colorCyan);
+  color: white;
+}
+
+body.dark-mode .btn-outline-cyan {
+  border-color: var(--colorCyan);
+  color: var(--colorCyan);
+}
+
+body.dark-mode .btn-outline-cyan:hover {
+  background-color: var(--colorCyan);
+  color: white;
+}
+
 .text-cyan {
   color: var(--colorCyan) !important;
 }
@@ -243,4 +265,30 @@ body.dark-mode .form-container, body.dark-mode .form-registro {
 body.dark-mode .card.bg-white p.text-muted {
   color: #aaa !important; /* un gris claro más visible en modo oscuro */
   /* o usa color: #e0e0e0; para un texto casi blanco */
+}
+/* Colores personalizados para list-group-item en modo oscuro */
+body.dark-mode .list-group-item-success {
+  background-color: #1b4d27 !important; /* verde oscuro */
+  color: #a8e6a1 !important; /* verde claro para texto */
+  border-color: #3a7a3a !important;
+}
+
+body.dark-mode .list-group-item-warning {
+  background-color: #664d19 !important; /* amarillo oscuro / mostaza */
+  color: #f1d58b !important; /* amarillo claro */
+  border-color: #a37e1d !important;
+}
+
+body.dark-mode .list-group-item-danger {
+  background-color: #5a1c1c !important; /* rojo oscuro */
+  color: #f79999 !important; /* rojo claro */
+  border-color: #7b2b2b !important;
+}
+
+/* Opcional: un pequeño efecto hover */
+body.dark-mode .list-group-item-success:hover,
+body.dark-mode .list-group-item-warning:hover,
+body.dark-mode .list-group-item-danger:hover {
+  filter: brightness(1.1);
+  cursor: pointer;
 }

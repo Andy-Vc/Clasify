@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../admin/service/admin.service';
 import { UsuarioDTO } from '../../shared/model/usuarioDTO.model';
+import { ProfesorService } from '../service/curso.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,7 @@ import { UsuarioDTO } from '../../shared/model/usuarioDTO.model';
 export class DashboardComponent implements OnInit{
   usuario!: UsuarioDTO;
 
-  constructor(private adminService: AdminService ) { 
+  constructor(private profesorService: ProfesorService ) { 
   }
 
   ngOnInit(): void {

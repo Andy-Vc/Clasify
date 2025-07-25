@@ -16,11 +16,14 @@ import com.clasify.repository.ICursoRepository;
 public class CursoService {
 
     private final ICursoRepository repository;
-    public CursoService(ICursoRepository repository) {
-        this.repository = repository;   
-    }
+    private CursoMapper cursoMapper;
 
-    public long countCursos() {
+    public CursoService(ICursoRepository repository, CursoMapper cursoMapper) {
+		this.repository = repository;
+		this.cursoMapper = cursoMapper;
+	}
+
+	public long countCursos() {
         return repository.countCursos();
     }
 
@@ -34,13 +37,13 @@ public class CursoService {
     public List<CursoEstudiantesDTO> getAllByTeacher(Integer idProfesor) {
         List<Curso> cursos = repository.findByIdProfesor_IdUsuario(idProfesor);
         return cursos.stream()
-                     .map(CursoMapper::getDetalleDTO)
+                     .map(cursoMapper::getDetalleDTO)
                      .collect(Collectors.toList());
     }
     
     public CursoEstudiantesDTO getCurseStudents(String idCurso) {
         Curso curso = repository.findById(idCurso).orElseThrow();
-        return CursoMapper.getDetalleDTO(curso);
+        return cursoMapper.getDetalleDTO(curso);
     }
 
     
